@@ -1,20 +1,26 @@
 package com.pathfinder;
 
+import javafx.util.Pair;
+
 import javax.swing.*;
 import java.awt.*;
 
 // https://stackoverflow.com/questions/14627223/how-to-change-a-jbutton-color-on-mouse-pressed
 
-public class GridButton extends JButton {
+public class GridSquare extends JButton {
     private Color hoverBackgroundColor;
     private Color pressedBackgroundColor;
-    private boolean isPressed;
+    private boolean isSet;
+    private boolean isWall;
+    private Pair<Integer, Integer> coordinate;
+    private int x;
+    private int y;
 
-    public GridButton() {
+    public GridSquare() {
         this(null);
     }
 
-    public GridButton(String text) {
+    public GridSquare(String text) {
         super(text);
         super.setContentAreaFilled(false);
     }
@@ -36,6 +42,10 @@ public class GridButton extends JButton {
     public void setContentAreaFilled(boolean b) {
     }
 
+    public void setVisited() {
+        setBackground(Color.WHITE);
+    }
+
     public Color getHoverBackgroundColor() {
         return hoverBackgroundColor;
     }
@@ -52,11 +62,35 @@ public class GridButton extends JButton {
         this.pressedBackgroundColor = pressedBackgroundColor;
     }
 
-    public boolean isPressed() {
-        return isPressed;
+    public boolean isWall() {
+        return isWall;
     }
 
-    public void setPressed() {
-        isPressed = true;
+    public void setWall() {
+        this.isWall = !this.isWall;
+    }
+
+    public boolean isSet() {
+        return isSet;
+    }
+
+    public void setSet() {
+        this.isSet = !this.isSet;
+    }
+
+    public Pair<Integer, Integer> getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(Pair<Integer, Integer> coordinate) {
+        this.coordinate = coordinate;
+    }
+
+    public int getXCoordinate() {
+        return this.coordinate.getKey();
+    }
+
+    public int getYCoordinate() {
+        return this.coordinate.getValue();
     }
 }
