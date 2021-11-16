@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class Window extends JFrame {
@@ -113,10 +111,10 @@ public class Window extends JFrame {
                 wallSquares.remove(square);
                 square.setWall();
             }
+            square.setSet();
         }
         setNull(square);
     }
-
 
     private void setStart(@NotNull GridSquare square) {
         square.setBackground(Color.GREEN);
@@ -207,6 +205,8 @@ public class Window extends JFrame {
         for (GridSquare i: allSquares) {
             removeSquare(i);
         }
+
+        System.out.println(startSquare + " " + endSquare);
 
         System.out.println("-------------------------------------------------------------------------------");
         System.out.println("Board Reset");

@@ -1,22 +1,16 @@
 package com.pathfinder;
 
-import javafx.scene.layout.TilePane;
 import javafx.util.Pair;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import javax.swing.plaf.IconUIResource;
 import java.awt.*;
-import java.awt.desktop.SystemSleepEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+
+//import java.awt.desktop.SystemSleepEvent;
 
 public class Main {
 
@@ -30,10 +24,39 @@ public class Main {
 
     public static void main(String[] args) {
         // Variables Used
-        int size = 9;
+        final int[] size = new int[1];
         int windowHeight = 600;
         int windowWidth = 600;
 
+        JFrame inputWindow = new JFrame("Enter Grid Size");
+
+        JTextField sizeInput = new JTextField();
+        sizeInput.setBounds(10, 10, 150,20);
+
+        JButton submitButton = new JButton("Submit");
+        submitButton.setBounds(180, 10, 100, 20);
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String sizeText = sizeInput.getText();
+                size[0] = Integer.parseInt(sizeText);
+
+                openWindow(size[0], windowHeight, windowWidth);
+
+                inputWindow.setVisible(false);
+                inputWindow.dispose();
+            }
+        });
+
+        inputWindow.add(sizeInput);
+        inputWindow.add(submitButton);
+
+        inputWindow.setSize(300,80);
+        inputWindow.setLayout(null);
+        inputWindow.show();
+    }
+
+    private static void openWindow(int size, int windowHeight, int windowWidth) {
         Window frame = new Window(size, windowHeight, windowWidth);
 
         addStartAction(frame);
@@ -66,13 +89,14 @@ public class Main {
             paths.remove(0);
             sortPaths(paths);
 
-            allPathsText(paths);
+//            allPathsText(paths);
 
             turns++;
 
-            int cap = 10000000;
+            int cap = 100;
             if (turns > cap) {
                 debugStop = true;
+                System.out.println("The process has been stopped");
             }
 
             if (getLastSquare(paths.get(0)) == endSquare) {
@@ -81,10 +105,10 @@ public class Main {
         }
 
         if (programEnd) {
-            ArrayList<GridSquare> adrianaAss = paths.get(0);
+            ArrayList<GridSquare> x = paths.get(0);
 
-            for (GridSquare slap: adrianaAss) {
-                slap.setBackground(Color.RED);
+            for (GridSquare po: x) {
+                po.setBackground(Color.RED);
             }
         }
     }
@@ -228,7 +252,7 @@ public class Main {
         return paths;
     }
 
-    public static Comparator<ArrayList<GridSquare>> pathComparator = new Comparator<>() {
+    public static Comparator<ArrayList<GridSquare>> pathComparator = new Comparator<ArrayList<GridSquare>>() {
         @Override
         public int compare(ArrayList<GridSquare> a, ArrayList<GridSquare> b) {
             return (Double.compare(straightLineDistance(getLastSquare(a), endSquare), straightLineDistance(getLastSquare(b), endSquare)));
