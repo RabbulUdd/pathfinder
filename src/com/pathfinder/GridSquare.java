@@ -1,10 +1,9 @@
 package com.pathfinder;
 
-import javafx.util.Pair;
-
 import javax.swing.*;
 import java.awt.*;
 
+// I have used the code in this link and have changed it to fit my application.
 // https://stackoverflow.com/questions/14627223/how-to-change-a-jbutton-color-on-mouse-pressed
 
 public class GridSquare extends JButton {
@@ -12,7 +11,7 @@ public class GridSquare extends JButton {
     private Color pressedBackgroundColor;
     private boolean isSet;
     private boolean isWall;
-    private Pair<Integer, Integer> coordinate;
+    private Coordinate coordinate;
     private int x;
     private int y;
 
@@ -78,19 +77,23 @@ public class GridSquare extends JButton {
         this.isSet = !this.isSet;
     }
 
-    public Pair<Integer, Integer> getCoordinate() {
+    public Coordinate getCoordinate() {
         return coordinate;
     }
 
-    public void setCoordinate(Pair<Integer, Integer> coordinate) {
+    public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
 
+    public String getCoordinateText() {
+        return String.valueOf(coordinate.getX()) + String.valueOf(coordinate.getY());
+    }
+
     public int getXCoordinate() {
-        return this.coordinate.getKey();
+        return this.coordinate.getX();
     }
 
     public int getYCoordinate() {
-        return this.coordinate.getValue();
+        return this.coordinate.getY();
     }
 }

@@ -1,7 +1,5 @@
 package com.pathfinder;
 
-import javafx.util.Pair;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,6 +19,8 @@ public class Main {
     private static GridSquare startSquare;
     private static GridSquare endSquare;
     private static ArrayList<GridSquare> wallSquares;
+
+    private static ArrayList<GridSquare> squareVisited;
 
     public static void main(String[] args) {
         // Variables Used
@@ -71,6 +71,8 @@ public class Main {
         endSquare = w.getEndSquare();
         wallSquares = w.getWallSquares();
 
+        squareVisited = new ArrayList<>();
+
         allSquares = w.getAllSquares();
 
 //        GridSquare current = startSquare;
@@ -93,11 +95,15 @@ public class Main {
 
             turns++;
 
-            int cap = 100;
+            int cap = 1000000;
             if (turns > cap) {
                 debugStop = true;
                 System.out.println("The process has been stopped");
             }
+
+//            if (paths.size() > 100) {
+//                paths.remove(paths.size() - 1);
+//            }
 
             if (getLastSquare(paths.get(0)) == endSquare) {
                 programEnd = true;
@@ -139,19 +145,20 @@ public class Main {
         ArrayList<GridSquare> currentPath = paths.get(0);
         ArrayList<GridSquare> newPath = new ArrayList<>();
 
-        if (next != null && !(currentPath.contains(next))) {
+        if (next != null && !(currentPath.contains(next)) && !(squareVisited.contains(next))) {
             for (int i = 0; i < currentPath.size(); i++) {
                 newPath.add(currentPath.get(i));
             }
 
+            squareVisited.add(next);
             newPath.add(next);
             paths.add(newPath);
 
 //            pathText(newPath);
         } else {
-//            if (next != null) {
-//                System.out.println("Excluded : " +  next.getCoordinate());
-//            }
+            if (next != null) {
+                System.out.println("Excluded : " +  next.getCoordinateText());
+            }
         }
     }
 
@@ -173,7 +180,7 @@ public class Main {
     private static void pathText(ArrayList<GridSquare> currentPath) {
         String x = "Path Added : ";
         for (int i = 0; i < currentPath.size(); i++) {
-            x += currentPath.get(i).getCoordinate() + " ";
+            x += currentPath.get(i).getCoordinateText() + " ";
         }
         System.out.println(x);
     }
@@ -183,9 +190,9 @@ public class Main {
             return null;
         }
 
-        Pair<Integer, Integer> coordinate = current.getCoordinate();
+        Coordinate coordinate = current.getCoordinate();
 
-        Pair<Integer, Integer> newCoordinate = new Pair<>(coordinate.getKey() + xDistance, coordinate.getValue() + yDistance);
+        Coordinate newCoordinate = new Coordinate(coordinate.getX() + xDistance, coordinate.getY() + yDistance);
 
         GridSquare proposedSquare = getSquare(newCoordinate);
 
@@ -193,7 +200,7 @@ public class Main {
             return proposedSquare;
         } else {
 //            if (proposedSquare != null) {
-//                System.out.println("Proposed Excluded : " + proposedSquare.getCoordinate());
+//                System.out.println("Proposed Excluded : " + proposedSquare.getCoordinateText());
 //            }
             return null;
         }
@@ -233,7 +240,7 @@ public class Main {
         return move(current, 1,1);
     }
 
-    private static GridSquare getSquare(Pair<Integer, Integer> coordinate) {
+    private static GridSquare getSquare(Coordinate coordinate) {
         for (GridSquare i: allSquares) {
             if (coordinateEquals(i.getCoordinate(), coordinate)) {
                 return i;
@@ -243,8 +250,8 @@ public class Main {
         return null;
     }
 
-    private static boolean coordinateEquals(Pair<Integer, Integer> a, Pair<Integer, Integer> b) {
-        return a.getValue() == b.getValue() && a.getKey() == b.getKey();
+    private static boolean coordinateEquals(Coordinate a, Coordinate b) {
+        return a.getY() == b.getY() && a.getX() == b.getX();
     }
 
     private static ArrayList<ArrayList<GridSquare>> sortPaths(ArrayList<ArrayList<GridSquare>> paths) {
@@ -295,8 +302,8 @@ public class Main {
         while (current != endSquare && !debugStop) { // will end up in a non ending state, do change this.
             current.setVisited();
 
-            int xDistance = endSquare.getCoordinate().getKey() - current.getCoordinate().getKey();
-            int yDistance = endSquare.getCoordinate().getValue() - current.getCoordinate().getValue();
+            int xDistance = endSquare.getCoordinate().getX() - current.getCoordinate().getX();
+            int yDistance = endSquare.getCoordinate().getY() - current.getCoordinate().getY();
 
             if (xDistance < 0) {
                 System.out.println("Direction : left");
@@ -318,7 +325,7 @@ public class Main {
                 debugStop = true;
             }
 
-            System.out.println("Current : " + current.getCoordinate());
+            System.out.println("Current : " + current.getCoordinateText());
 
             turns++;
             System.out.println();

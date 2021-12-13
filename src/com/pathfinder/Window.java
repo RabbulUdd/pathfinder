@@ -1,8 +1,5 @@
 package com.pathfinder;
 
-import javafx.util.Pair;
-import org.jetbrains.annotations.NotNull;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,8 +33,8 @@ public class Window extends JFrame {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                Pair<Integer, Integer> coordinate = new Pair<>(j, i);
-                String coordinateText = String.valueOf(coordinate.getKey()) + String.valueOf(coordinate.getValue());
+                Coordinate coordinate = new Coordinate(j, i);
+                String coordinateText = String.valueOf(coordinate.getX()) + String.valueOf(coordinate.getY());
 
                 GridSquare b = addButton(coordinateText);
 //                GridSquare b = addButton(String.valueOf(i) + String.valueOf(j));
@@ -53,7 +50,7 @@ public class Window extends JFrame {
         return frame;
     }
 
-    @NotNull
+    // @NotNull
     private GridSquare addButton(String text) {
         GridSquare button = new GridSquare(text);
 
@@ -83,7 +80,7 @@ public class Window extends JFrame {
     }
 
 
-    private void setSquare(@NotNull GridSquare square) {
+    private void setSquare(GridSquare square) {
         if (!square.isSet()) {
             square.setSet();
 
@@ -101,7 +98,7 @@ public class Window extends JFrame {
         }
     }
 
-    public void removeSquare(@NotNull GridSquare square) {
+    public void removeSquare(GridSquare square) {
         if (square.isSet()) {
             if (startSquare == square) {
                 startSquare = null;
@@ -116,19 +113,19 @@ public class Window extends JFrame {
         setNull(square);
     }
 
-    private void setStart(@NotNull GridSquare square) {
+    private void setStart(GridSquare square) {
         square.setBackground(Color.GREEN);
     }
 
-    private void setEnd(@NotNull GridSquare square) {
+    private void setEnd(GridSquare square) {
         square.setBackground(Color.MAGENTA);
     }
 
-    private void setWall(@NotNull GridSquare square) {
+    private void setWall(GridSquare square) {
         square.setBackground(Color.BLACK);
     }
 
-    private void setNull(@NotNull GridSquare square) {
+    private void setNull(GridSquare square) {
         square.setBackground(primaryColour);
     }
 
@@ -168,7 +165,7 @@ public class Window extends JFrame {
                 if (!roadSet()) {
                     x = setRoadPrompt();
                 } else {
-                    x = "Start Coordinate : " + startSquare.getCoordinate() + " | End Coordinate : " + endSquare.getCoordinate();
+                    x = "Start Coordinate : " + startSquare.getCoordinateText() + " | End Coordinate : " + endSquare.getCoordinateText();
                 }
 
                 if (wallSquares.size() > 0) {
@@ -176,7 +173,7 @@ public class Window extends JFrame {
                 }
 
                 for (int i = 0; i < wallSquares.size(); i++) {
-                    x = x + " " + wallSquares.get(i).getCoordinate();
+                    x = x + " " + wallSquares.get(i).getCoordinateText();
                 }
 
                 System.out.println(x);

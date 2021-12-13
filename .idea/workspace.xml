@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88f36b2d-dece-4f44-84b2-915d2c5cfa67" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="88f36b2d-dece-4f44-84b2-915d2c5cfa67" name="Default Changelist" comment="Fixed Reset Errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projects/META-INF/Projects.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/GridSquare.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/GridSquare.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Main$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Route.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Window$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Window$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Window$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Window$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Window$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Window$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projects/com/pathfinder/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/pathfinder/GridSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pathfinder/GridSquare.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/pathfinder/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pathfinder/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/pathfinder/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pathfinder/Window.java" afterDir="false" />
     </list>
@@ -83,6 +75,30 @@
       <option name="presentableId" value="Default" />
       <updated>1618211397286</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fixed Reset Errors">
+      <created>1637086165966</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1637086165966</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed Reset Errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Reset Errors" />
   </component>
 </project>
